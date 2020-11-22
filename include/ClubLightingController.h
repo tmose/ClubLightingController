@@ -3,7 +3,7 @@
  * Created Date: 11-18-2020
  * Author: Thomas Ose
  * ---------------------------------------------------------------------------
- * Last Modified: Saturday, 21st November 2020 4:07:47 pm
+ * Last Modified: Sunday, 22nd November 2020 1:56:44 pm
  * Modified By: Thomas Ose (tmo@osemicro.com>)
  * ---------------------------------------------------------------------------
  * Copyright (c) 2016 - 2020 OMS(re)Models
@@ -20,6 +20,7 @@
  * HISTORY:
  * Date      	By	Comments
  * ----------	---	----------------------------------------------------------
+ * 11-22-2020	tmo	Removed unused code and change sampling times
  * 11-18-2020	tmo	Initial file creation
  * --------------------------------------------------------------------------- */
 
@@ -87,7 +88,7 @@ void CheckHeartBeat_CallBack();
 
 Task CheckSensor(2500, TASK_FOREVER, &CheckSensor_Callback);
 Task CheckRelays(2000, TASK_FOREVER, &CheckRelays_CallBack);
-Task CheckDelayPot(3000, TASK_FOREVER, &CheckDelayPot_CallBack);
+Task CheckDelayPot(5000, TASK_FOREVER, &CheckDelayPot_CallBack);
 Task CheckHeartBeat(1000, TASK_FOREVER, &CheckHeartBeat_CallBack);
 
 #endif

@@ -3,7 +3,7 @@
  * Created Date: 11-18-2020
  * Author: Thomas Ose
  * ---------------------------------------------------------------------------
- * Last Modified: Saturday, 21st November 2020 4:07:34 pm
+ * Last Modified: Sunday, 22nd November 2020 2:03:57 pm
  * Modified By: Thomas Ose (tmo@osemicro.com>)
  * ---------------------------------------------------------------------------
  * Copyright (c) 2016 - 2020 OMS(re)Models
@@ -20,6 +20,8 @@
  * HISTORY:
  * Date      	By	Comments
  * ----------	---	----------------------------------------------------------
+ * 11-22-2020	tmo Fixed problem with light initally all being on	
+ * 11-22-2020	tmo Replace sensor logic to support sensor module	
  * 11-21-2020	tmo	Started adding more processing code
  * 11-18-2020	tmo	Created original code
  * --------------------------------------------------------------------------- */
@@ -34,13 +36,13 @@
  */
 void CheckSensor_Callback()
 {
-    int value = analogRead(LIGHT_SENSOR);
+    int value = digitalRead(LIGHT_SENSOR);
     delay(10);
     Serial.println(value);
     if (LastSensorRead != value)
     {
         LastSensorRead = value;
-        LightRequire = (LastSensorRead > LIGHT_SENSOR_THRESHHOLD);
+        LightRequire = value;
         Serial.println(LightRequire);
         Serial.println(LastLightStatus);
         if (LightRequire != LastLightStatus)
@@ -48,6 +50,7 @@ void CheckSensor_Callback()
             if (LightRequire && !LastLightRequire)
             {
                 LastLightRequire = true;
+                LightRequireStartTime = 0;
                 Serial.println("Turn on lights");
             }
             if (!LightRequire && LastLightRequire)
@@ -144,6 +147,11 @@ void setup()
     Serial.begin(9600);
 #endif
 
+    LightRequireStartTime = 0;
+    LastLightRequire = false;
+    LightRequire = false;
+    LastSensorRead = 0;
+
     pinMode(RELAY_1, OUTPUT);
     pinMode(RELAY_2, OUTPUT);
     pinMode(RELAY_3, OUTPUT);
@@ -153,17 +161,16 @@ void setup()
     pinMode(DELAY_POT_1, INPUT);
     pinMode(DELAY_POT_2, INPUT);
     pinMode(HEART_BEAT, OUTPUT);
-
-    digitalWrite(RELAY_1, ON);
-    digitalWrite(RELAY_2, ON);
-    digitalWrite(RELAY_3, OFF);
-    digitalWrite(RELAY_4, OFF);
-
+    
     runner.init();
 
     runner.addTask(CheckSensor);
     CheckSensor.enable();
     Serial.println("Photo Sensor task added");
+
+    runner.addTask(CheckDelayPot);
+    CheckDelayPot.enable();
+    Serial.println("Potentiometer Control task added");
 
     runner.addTask(CheckRelays);
     CheckRelays.enable();
@@ -172,6 +179,11 @@ void setup()
     runner.addTask(CheckHeartBeat);
     CheckHeartBeat.enable();
     Serial.println("Heartbeat task added");
+
+    digitalWrite(RELAY_1, ON);
+    digitalWrite(RELAY_2, ON);
+    digitalWrite(RELAY_3, OFF);
+    digitalWrite(RELAY_4, OFF);
 }
 
 /**
