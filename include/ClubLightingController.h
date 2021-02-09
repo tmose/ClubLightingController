@@ -3,7 +3,7 @@
  * Created Date: 11-18-2020
  * Author: Thomas Ose
  * ---------------------------------------------------------------------------
- * Last Modified: Sunday, 22nd November 2020 1:56:44 pm
+ * Last Modified: Monday, 8th February 2021 6:22:17 pm
  * Modified By: Thomas Ose (tmo@osemicro.com>)
  * ---------------------------------------------------------------------------
  * Copyright (c) 2016 - 2020 OMS(re)Models
@@ -36,7 +36,7 @@
 #include "TaskScheduler.h"
 
 // Define variables
-
+#define VERSION 1.01
 //#define DEBUG
 
 #define RELAY_1 4

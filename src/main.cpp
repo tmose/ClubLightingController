@@ -3,7 +3,7 @@
  * Created Date: 11-18-2020
  * Author: Thomas Ose
  * ---------------------------------------------------------------------------
- * Last Modified: Sunday, 22nd November 2020 2:03:57 pm
+ * Last Modified: Monday, 8th February 2021 6:21:26 pm
  * Modified By: Thomas Ose (tmo@osemicro.com>)
  * ---------------------------------------------------------------------------
  * Copyright (c) 2016 - 2020 OMS(re)Models
@@ -145,6 +145,8 @@ void setup()
 {
 #ifdef DEBUG // only write to the serial port if we are in debug mode
     Serial.begin(9600);
+    Serial.print("Club Lighting Controller - Version ");
+    Serial.println(VERSION);
 #endif
 
     LightRequireStartTime = 0;
