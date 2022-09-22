@@ -3,7 +3,7 @@
  * Created Date: 11-18-2020
  * Author: Thomas Ose
  * ---------------------------------------------------------------------------
- * Last Modified: Monday, 8th February 2021 6:22:17 pm
+ * Last Modified: Thursday, 22nd September 2022 5:20:14 pm
  * Modified By: Thomas Ose (tmo@osemicro.com>)
  * ---------------------------------------------------------------------------
  * Copyright (c) 2016 - 2020 OMS(re)Models
@@ -34,9 +34,11 @@
 #endif
 
 #include "TaskScheduler.h"
+#include "IoAbstraction.h"
+#include "TaskManagerIO.h"
 
 // Define variables
-#define VERSION 1.01
+#define VERSION 1.50
 //#define DEBUG
 
 #define RELAY_1 4
@@ -72,7 +74,7 @@ bool LastLightRequire = true;
 bool LastLightStatus = true;
 unsigned long LightRequireStartTime = 0;
 
-// variable used to controll the delay time
+// variable used to control the delay time
 unsigned long DelayTime1 = DEFAULT_DELAY;
 unsigned long DelayTime2 = DEFAULT_DELAY;
 unsigned long DelayStart1 = 0;

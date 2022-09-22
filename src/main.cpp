@@ -1,12 +1,12 @@
 /** -------------------------------------------------------------------------- 
  * File: main.cpp
- * Created Date: 11-18-2020
+ * Created Date: 02-11-2021
  * Author: Thomas Ose
  * ---------------------------------------------------------------------------
- * Last Modified: Monday, 8th February 2021 6:21:26 pm
+ * Last Modified: Thursday, 22nd September 2022 5:18:12 pm
  * Modified By: Thomas Ose (tmo@osemicro.com>)
  * ---------------------------------------------------------------------------
- * Copyright (c) 2016 - 2020 OMS(re)Models
+ * Copyright (c) 2016 - 2022 OMS(re)Models
  * 
  *  This source file is subject of the GNU general public license 2,
  *  that is available at the world-wide-web at
@@ -20,7 +20,7 @@
  * HISTORY:
  * Date      	By	Comments
  * ----------	---	----------------------------------------------------------
- * 11-22-2020	tmo Fixed problem with light initally all being on	
+ * 11-22-2020	tmo Fixed problem with light initially all being on	
  * 11-22-2020	tmo Replace sensor logic to support sensor module	
  * 11-21-2020	tmo	Started adding more processing code
  * 11-18-2020	tmo	Created original code
@@ -65,7 +65,7 @@ void CheckSensor_Callback()
 
 /**
  * @brief  Control all the relay outputs
- * @note   LightRequired controll the action of the relays.  
+ * @note   LightRequired control the action of the relays.  
  *              Relay 1 is always on
  *              Relay 2 is on but shuts of after the time specified in DelayTime* when LightRequired is true
  *              Relay 3 stays on when LightRequired is true
